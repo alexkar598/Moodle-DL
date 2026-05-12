@@ -114,9 +114,9 @@ class ForumMod(MoodleMod):
                             'created': discussion.get('created', 0),
                         }
                     )
-                else:
-                    done = True
-                    break
+                #else:
+                #    done = True
+                #    break
             page_num += 1
 
         forum['files'] += await self.run_async_collect_function_on_list(
