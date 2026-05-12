@@ -145,6 +145,7 @@ class MoodleService:
                 course.overwrite_name_with = options.get('overwrite_name_with', None)
                 course.create_directory_structure = options.get('create_directory_structure', True)
                 course.excluded_sections = options.get("excluded_sections", [])
+                course.excluded_files = options.get("excluded_files", [])
 
         return courses
 
@@ -225,6 +226,8 @@ class MoodleService:
                     and (determine_ext(file.content_filename) not in exclude_file_extensions)
                     # Exclude files that are in excluded sections
                     and (MoodleService.should_download_section(file.section_id, course.excluded_sections))
+                    # Exclude files that are excluded
+                    and (file.module_id not in course.excluded_files)
                     # Exclude files that are bigger than max_file_size
                     and (max_file_size == 0 or file.content_filesize < max_file_size)
                 ):

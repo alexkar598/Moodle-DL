@@ -217,6 +217,7 @@ class Course:
         self.overwrite_name_with = None
         self.create_directory_structure = True
         self.excluded_sections = []
+        self.excluded_files = []
 
     def __str__(self):
         message = 'Course ('
